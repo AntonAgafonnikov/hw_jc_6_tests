@@ -1,11 +1,13 @@
 package ru.netology;
 
-import org.junit.jupiter.api.*;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
 
 import java.util.stream.Stream;
+
+import static org.hamcrest.MatcherAssert.assertThat;
+import static org.hamcrest.Matchers.*;
 
 
 public class CalculationsTests {
@@ -18,7 +20,9 @@ public class CalculationsTests {
         // act
         int result = Calculations.findLargestPrimeNumberPalindrome(start, finish);
         //assert
-        Assertions.assertEquals(expected, result);
+        //Assertions.assertEquals(expected, result);
+        assertThat(expected, equalTo(result));
+        assertThat(result, notNullValue());
     }
 
     public static Stream<Arguments> addTestParametersFLPP() {
@@ -38,7 +42,8 @@ public class CalculationsTests {
         boolean result = Calculations.isPalindrome(number);
 
         //assert
-        Assertions.assertEquals(expected, result);
+        //Assertions.assertEquals(expected, result);
+        assertThat(expected, equalTo(result));
     }
 
     public static Stream<Arguments> addTestParametersIsPalindrome() {
@@ -59,7 +64,8 @@ public class CalculationsTests {
         boolean result = Calculations.isPrimeNumber(number);
 
         //assert
-        Assertions.assertEquals(expected, result);
+        //Assertions.assertEquals(expected, result);
+        assertThat(expected, equalTo(result));
     }
 
     public static Stream<Arguments> addTestParametersIsPrimeNumber() {
@@ -68,6 +74,25 @@ public class CalculationsTests {
                 Arguments.of(79997, true),
                 Arguments.of(2, true),
                 Arguments.of(54, false)
+        );
+    }
+
+    @ParameterizedTest
+    @MethodSource("addTestParametersPrintResult")
+    public void testPrintResult(int number, String expected) {
+        System.out.println("Параметризованный тест формирования сообщения о результате");
+
+        // act
+        String result = Calculations.printResult(number);
+
+        //assert
+        assertThat(expected, equalToIgnoringWhiteSpace(result));
+    }
+
+    public static Stream<Arguments> addTestParametersPrintResult() {
+        return Stream.of(
+                Arguments.of(0, "  В заданном  диапазоне    не найдено   простого    числа-палиндрома =("),
+                Arguments.of(79997, "   В заданном       диапазоне наибольшее простое число-палиндром:    79997" )
         );
     }
 }
