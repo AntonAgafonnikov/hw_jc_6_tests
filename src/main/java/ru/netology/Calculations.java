@@ -13,8 +13,8 @@ public class Calculations {
         }
 
         for (int i = start; i <= finish; i++) {
-            if (isPalindrome(i)) {
-                if (isPrimeNumber(i)) {
+            if (isPrimeNumber(i)) {
+                if (isPalindrome(i)) {
                     largestPrimeNumberPalindrome = i;
                 }
             }
@@ -25,25 +25,27 @@ public class Calculations {
 
     public static boolean isPalindrome(int number) {
         String numberString = String.valueOf(number);
-        int numberLength = numberString.length() - 1;
+        int numberLength = numberString.length();
+        int hitCounter = numberLength / 2;
 
-        for (int i = 0; i <= numberLength; i++, numberLength--) {
-            if (numberString.charAt(i) != numberString.charAt(numberLength)) {
-                return false;
+        for (int i = 0; i < numberLength; i++, numberLength--) {
+            if (numberString.charAt(i) == numberString.charAt(numberLength - 1)) {
+                hitCounter--;
+                if (hitCounter <= 0) {
+                    return true;
+                }
             }
         }
 
-        return true;
+        return false;
     }
 
     public static boolean isPrimeNumber(int number) {
-
         for (int i = 2; i < number; i++) {
             if (number % i == 0) {
                 return false;
             }
         }
-
         return true;
     }
 

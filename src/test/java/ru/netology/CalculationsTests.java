@@ -45,6 +45,7 @@ public class CalculationsTests {
         return Stream.of(
                 Arguments.of(121, true),
                 Arguments.of(23532, true),
+                Arguments.of(2, true),
                 Arguments.of(123322, false)
         );
     }
@@ -65,6 +66,7 @@ public class CalculationsTests {
         return Stream.of(
                 Arguments.of(29, true),
                 Arguments.of(79997, true),
+                Arguments.of(2, true),
                 Arguments.of(54, false)
         );
     }
