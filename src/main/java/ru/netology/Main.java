@@ -8,6 +8,10 @@ public class Main {
         int result = Calculations.findLargestPrimeNumberPalindrome(-234, 87470);
         String resultMessage = Calculations.printResult(result);
         System.out.println(resultMessage);
-        
+
+        int result2 = Calculations.findLargestPrimeNumberPalindrome(-234, 87470);
+        String resultMessage2 = Calculations.printResult(result2);
+        System.out.println(resultMessage2);
+
     }
 }
